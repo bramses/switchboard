@@ -1,0 +1,19 @@
+{
+    "schema_version": "1.0.0",
+    "name_for_model": "my_model",
+    "name_for_human": "My Model",
+    "description_for_model": "My model is a model that models things.",
+    "description_for_human": "My model is a model that models things.",
+    "auth": {
+        "type": "none",
+        "instructions": "No authentication required."
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost:3333/openapi.yaml",
+        "is_user_authenticated": false
+    },
+    "logo_url": "https://example.com/logo.png",
+    "contact_email": "test@mail.com",
+    "legal_info_url": "https://example.com/legal.html"
+}
