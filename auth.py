@@ -6,7 +6,6 @@ from config import Settings, get_settings
 api_key_header = APIKeyHeader(name="access_token", auto_error=False)
 
 async def get_api_key(settings: Settings = Depends(get_settings), api_key_header: str = Security(api_key_header)):
-    print(settings)
     if api_key_header == settings.API_KEY:
         return api_key_header   
     else:
