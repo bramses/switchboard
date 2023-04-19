@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.openapi.utils import get_openapi
+import json
 
 app = FastAPI()
 
@@ -33,5 +34,12 @@ def custom_openapi():
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 
+
+
+
+@app.get("/.well-known/ai-plugin.json")
+async def plugin_manifest():
+    file = open("./.well-known/ai-plugin.json", "r")
+    return json.load(file)
 
 app.openapi = custom_openapi
