@@ -1,23 +1,21 @@
+from fastapi import Depends, FastAPI, Security
+import auth
+from fastapi.security.api_key import APIKey
 
-from typing import Annotated
-from fastapi import Depends, FastAPI
-from fastapi.security import OAuth2PasswordBearer
 from fastapi.openapi.utils import get_openapi
 import json
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+@app.get("/secure")
+async def info(api_key: APIKey = Depends(auth.get_api_key)):
+    return {
+        "default variable": api_key
+    }
 
-# from https://fastapi.tiangolo.com/tutorial/security/first-steps/#__tabbed_1_1 (nyi)
-# and https://medium.com/@caetanoog/start-your-first-fastapi-server-with-poetry-in-10-minutes-fef90e9604d9
-@app.get("/items/", description="Get items from the database")
-async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
-    return {"token": token}
-
-# @app.get("/") 
-# async def main_route():     
-#   return {"message": "Hey, It is me Goku"}
+@app.get("/") 
+async def main_route():     
+  return {"message": "switchboard"}
 
 def custom_openapi():
     if app.openapi_schema:
@@ -33,8 +31,6 @@ def custom_openapi():
     }
     app.openapi_schema = openapi_schema
     return app.openapi_schema
-
-
 
 
 @app.get("/.well-known/ai-plugin.json")
