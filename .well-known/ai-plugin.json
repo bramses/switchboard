@@ -5,9 +5,12 @@
     "description_for_model": "My model is a model that models things.",
     "description_for_human": "My model is a model that models things.",
     "auth": {
-        "type": "none",
-        "instructions": "No authentication required."
-    },
+        "type": "service_http",
+        "authorization_type": "bearer",
+        "verification_tokens": {
+          "openai": "Replace_this_string_with_the_verification_token_generated_in_the_ChatGPT_UI"
+        }
+      },
     "api": {
         "type": "openapi",
         "url": "http://localhost:3333/openapi.yaml",
