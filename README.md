@@ -3,7 +3,7 @@
 ## runing
 
 1. `poetry shell`
-2. `pooetry install`
+2. `poetry install`
 3. `uvicorn main:app --reload`
 
 ## deploy
